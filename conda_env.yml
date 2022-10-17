@@ -16,3 +16,4 @@ dependencies:
     - tensorboard==2.5.0
     - torch==1.8.1
     - transformers==4.5.1
+    - wandb

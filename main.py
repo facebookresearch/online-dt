@@ -38,7 +38,7 @@ class Experiment:
             variant["env"]
         )
         # initialize by offline trajs
-        if self.variant["expert_experience"]:
+        if variant["expert_experience"]:
             self.replay_buffer = ReplayBuffer(variant["replay_size"], self.offline_trajs)
         else:
             self.replay_buffer = ReplayBuffer(variant["replay_size"], [])
@@ -346,6 +346,14 @@ class Experiment:
                             group=self.variant["env"])
         
         # TODO: prefill buffer with x trajectories and set online rtg
+        print("\n*** Prefilling Replay Buffer! ***\n")
+        for i in range(self.variant["prefill_trajectories"]):
+            augment_outputs = self._augment_trajectories(online_envs=online_envs,
+                                                     target_explore=online_rtg, # TODO: experiment with online rtg starting at 1.0 and updating over time
+                                                     n=self.variant["num_online_rollouts"],
+                                                     )
+            if augment_outputs["aug_traj/max_return"] > online_rtg:
+                online_rtg = augment_outputs["aug_traj/max_return"]
         
         while self.online_iter < self.variant["max_online_iters"] and self.total_transitions_sampled < self.variant["max_interactions"] :
 
@@ -529,6 +537,8 @@ if __name__ == "__main__":
     parser.add_argument("--num_updates_per_pretrain_iter", type=int, default=5000)
 
     # finetuning options
+    parser.add_argument("--expert_experience", type=int, choices=[0,1], default=1)
+    parser.add_argument("--prefill_trajectories", type=int, default=1000)
     parser.add_argument("--online_rtg_adaptation", type=int, choices=[0,1], default=0)
     parser.add_argument("--max_online_iters", type=int, default=1500)
     parser.add_argument("--max_interactions", type=int, default=1_000_000)
