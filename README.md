@@ -3,11 +3,13 @@ This repository contains the Pytorch implementation of [Online Deicsion Transfor
 
 If you use this code for your research, please cite us as:
 ```Bibtex
-@article{zheng2022online,
+@inproceedings{zheng2022online,
   title={Online decision transformer},
   author={Zheng, Qinqing and Zhang, Amy and Grover, Aditya},
-  journal={arXiv preprint arXiv:2202.05607},
-  year={2022}
+  booktitle={international conference on machine learning},
+  pages={27042--27059},
+  year={2022},
+  organization={PMLR}
 }
 ```
 
@@ -25,7 +27,7 @@ export LD_LIBRARY_PATH=$LD_LIBRARY_PATH:<path-to-your-conda-env>/lib
 I have also found that `tensorboard` wants `protobuf` version to be `3.20.x`, and this helped
 ```console
 # you might need to uninstall dm-control
-pip3 install --upgrade protobuf==3.20.0 
+pip3 install --upgrade protobuf==3.20.0
 ```
 
 
@@ -40,7 +42,7 @@ tensorboard --logdir exp
 ```
 
 ## License
-The majority of `online-dt` is licensed under CC-BY-NC, however portions of the project are available under separate license terms: 
+The majority of `online-dt` is licensed under CC-BY-NC, however portions of the project are available under separate license terms:
 * D4RL dataset -  Creative Commons Attribution 4.0 License (CC-BY)
 * D4RL code, transformers, Lamb - Apache 2.0 License
 * stable-baselines3, Gym, decision-transformer - MIT License
