@@ -1,5 +1,5 @@
 # online-dt
-This repository contains the Pytorch implementation of [Online Deicsion Transformer](https://arxiv.org/abs/2202.05607) by [Qinqing Zheng](https://enosair.github.io/), [Amy Zhang](https://amyzhang.github.io/), and [Aditya Grover](https://aditya-grover.github.io/).
+This repository contains the Pytorch implementation of [Online Decision Transformer](https://arxiv.org/abs/2202.05607) by [Qinqing Zheng](https://enosair.github.io/), [Amy Zhang](https://amyzhang.github.io/), and [Aditya Grover](https://aditya-grover.github.io/).
 
 If you use this code for your research, please cite us as:
 ```Bibtex
